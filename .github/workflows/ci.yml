@@ -39,7 +39,7 @@ jobs:
 
       - name: terraform init (sandbox backend)
         working-directory: terraform_cicd
-        run: terraform init -input=false
+        run: terraform init -backend-config=backends/sandbox.hcl -input=false
 
       - name: terraform validate
         working-directory: terraform_cicd
