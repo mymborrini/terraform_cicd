@@ -10,8 +10,8 @@ terraform {
     key            = "sandbox/terraform.tfstate"
 
     endpoints = {
-        s3       = "http://localhost:4566"
-        dynamodb = "http://localhost:4566"
+        s3       = "http://127.0.0.1:4566"
+        dynamodb = "http://127.0.0.1:4566"
     }
 
     skip_credentials_validation = true
