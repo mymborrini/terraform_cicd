@@ -39,6 +39,11 @@ jobs:
 
       - name: terraform init (sandbox backend)
         working-directory: terraform_cicd
+        env:
+            AWS_ACCESS_KEY_ID: "test"
+            AWS_SECRET_ACCESS_KEY: "test"
+            AWS_DEFAULT_REGION: "eu-central-1"
+            AWS_EC2_METADATA_DISABLED: "true"
         run: terraform init -backend-config=backends/sandbox.hcl  -reconfigure
 
       - name: terraform validate
