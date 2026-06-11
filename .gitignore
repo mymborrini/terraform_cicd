@@ -20,10 +20,6 @@ override.tf.json
 .terraformrc
 terraform.rc
 
-# Sensitive variable files
-*.tfvars
-*.tfvars.json
-
 # Local env files
 .env
 
