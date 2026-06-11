@@ -7,6 +7,7 @@ terraform {
     bucket         = "tf-state"
 
     dynamodb_table = "tf-state-lock"
+    key            = "sandbox/terraform.tfstate"
 
     endpoints = {
         s3       = "http://localhost:4566"
