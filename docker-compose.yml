@@ -1,0 +1,38 @@
+services:
+  
+  localstack:
+    image: localstack/localstack:latest
+    profiles:
+      - localstack
+    ports:
+      - "4566:4566"
+    environment:
+      - SERVICES=s3,dynamodb,sts,iam
+      - AWS_DEFAULT_REGION=eu-central-1
+
+  github-runner:
+    image: myoung34/github-runner:ubuntu-focal
+    container_name: github-runner
+    profiles:
+      - github
+
+    environment:
+      RUNNER_WORKDIR: ${RUNNER_WORKDIR}
+      RUNNER_SCOPE: repo
+      REPO_URL: ${GITHUB_REPO_URL}
+      RUNNER_TOKEN: ${GITHUB_RUNNER_TOKEN}
+      RUNNER_NAME: ${RUNNER_NAME}
+      AWS_ACCESS_KEY_ID: "test"
+      AWS_SECRET_ACCESS_KEY: "test"
+      AWS_DEFAULT_REGION: "eu-central-1"
+      AWS_EC2_METADATA_DISABLED: "true"
+    
+
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - runner_data:/tmp/runner
+
+    restart: no
+
+volumes:
+  runner_data:
